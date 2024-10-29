@@ -24,7 +24,6 @@ ostream& operator<<(ostream& os, const Student& student) {
 }
 
 istream& operator>>(istream& in, Student& student) {
-
     in >> static_cast<Teacher&>(student);
     cout << "¬вед≥ть факультет: ";
     in >> student.faculty;
