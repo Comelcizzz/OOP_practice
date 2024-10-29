@@ -10,13 +10,10 @@ int main()
 
     cout << object1 << endl << object2 << endl << object3;
 
-    Student object1, object2;
-
     if (object1 == object2) {
         cout << "Студенти однакові." << endl;
     }
     else {
         cout << "Студенти різні." << endl;
     }
-
 }
