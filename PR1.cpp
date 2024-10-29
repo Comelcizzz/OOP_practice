@@ -1,19 +1,30 @@
 ﻿#include "Student.h"
 #include <Windows.h>
-        
-int main()
-{   
+
+int main() {
     SetConsoleOutputCP(1251);
 
-    Student object1, object2, object3; 
-    cin >> object1 >> object2 >> object3;
+    Student student1, student2;
+    cout << "Введіть дані для студента 1:\n";
+    cin >> student1; 
 
-    cout << object1 << endl << object2 << endl << object3;
+    cout << "Введіть дані для студента 2:\n";
+    cin >> student2; 
 
-    if (object1 == object2) {
-        cout << "Студенти однакові." << endl;
-    }
-    else {
-        cout << "Студенти різні." << endl;
-    }
+    cout << "\nДані студентів:\n";
+    cout << student1 << endl; 
+    cout << student2 << endl; 
+
+    Teacher teacher1, teacher2;
+    cout << "Введіть дані для викладача 1:\n";
+    cin >> teacher1; 
+
+    cout << "Введіть дані для викладача 2:\n";
+    cin >> teacher2; 
+
+    cout << "\nДані викладачів:\n";
+    cout << teacher1 << endl; 
+    cout << teacher2 << endl; 
+
+    return 0;
 }

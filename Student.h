@@ -1,38 +1,29 @@
 #ifndef STUDENT_H
 #define STUDENT_H
 
-#include <string>
-#include <iostream>
+#include "Teacher.h"
 
 using namespace std;
 
-class Student {
+class Student : public Teacher {
 private:
     int studentId;
-    string lastName;
-    string firstName;
-    string middleName;     
-    string birthDate;
-    string phoneNumber;
     string faculty;
     int course;
     string group;
 
 public:
     Student();
-
-    Student(int id, const string& lastName, const string& firstName,
+    Student(int studentId, const string& lastName, const string& firstName,
         const string& middleName, const string& birthDate,
-        const string& phoneNumber, const string& faculty,
+        const string& phoneNumber, const string& cycleCommission,
+        const vector<string>& subjects, const string& faculty,
         int course, const string& group);
-
-    Student(const Student& other);
-
     ~Student();
 
-    friend ostream& operator<<(ostream& os, Student const& student);
+    friend ostream& operator<<(ostream& os, const Student& student);
     friend istream& operator>>(istream& in, Student& student);
-    friend bool operator==(Student const& obj1, Student const& obj2);
 };
+
 
 #endif // STUDENT_H
