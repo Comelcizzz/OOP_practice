@@ -1,31 +1,23 @@
 #include "Teacher.h"
 
-using namespace std;
+Teacher::Teacher() {}
 
-Teacher::Teacher() : teacherId(0), lastName(""), firstName(""),
-middleName(""), birthDate(""),
-phoneNumber(""), cycleCommission("") {}
-
-Teacher::Teacher(int id, const string& lastName, const string& firstName,
+Teacher::Teacher(const string& lastName, const string& firstName,
     const string& middleName, const string& birthDate,
     const string& phoneNumber, const string& cycleCommission,
     const vector<string>& subjects)
-    : teacherId(id), lastName(lastName), firstName(firstName),
-    middleName(middleName), birthDate(birthDate),
-    phoneNumber(phoneNumber), cycleCommission(cycleCommission),
+    : lastName(lastName), firstName(firstName), middleName(middleName),
+    birthDate(birthDate), phoneNumber(phoneNumber), cycleCommission(cycleCommission),
     subjects(subjects) {}
 
-Teacher::~Teacher() {}
-
 ostream& operator<<(ostream& os, const Teacher& teacher) {
-    os << "ID: " << teacher.teacherId << endl;
-    os << "Прізвище: " << teacher.lastName << endl;
-    os << "Ім'я: " << teacher.firstName << endl;
-    os << "По батькові: " << teacher.middleName << endl;
-    os << "Дата народження: " << teacher.birthDate << endl;
-    os << "Номер телефону: " << teacher.phoneNumber << endl;
-    os << "Циклова комісія: " << teacher.cycleCommission << endl;
-    os << "Навчальні предмети: ";
+    os << "Прізвище: " << teacher.lastName << "\n"
+        << "Ім'я: " << teacher.firstName << "\n"
+        << "Побатькові: " << teacher.middleName << "\n"
+        << "Дата народження: " << teacher.birthDate << "\n"
+        << "Телефон: " << teacher.phoneNumber << "\n"
+        << "Циклова комісія: " << teacher.cycleCommission << "\n"
+        << "Предмети: ";
     for (const auto& subject : teacher.subjects) {
         os << subject << " ";
     }
@@ -34,25 +26,24 @@ ostream& operator<<(ostream& os, const Teacher& teacher) {
 }
 
 istream& operator>>(istream& in, Teacher& teacher) {
-    cout << "Введіть ID: ";
-    in >> teacher.teacherId;
     cout << "Введіть прізвище: ";
     in >> teacher.lastName;
     cout << "Введіть ім'я: ";
     in >> teacher.firstName;
-    cout << "Введіть по батькові: ";
+    cout << "Введіть побатькові: ";
     in >> teacher.middleName;
     cout << "Введіть дату народження: ";
     in >> teacher.birthDate;
-    cout << "Введіть номер телефону: ";
+    cout << "Введіть телефон: ";
     in >> teacher.phoneNumber;
     cout << "Введіть циклову комісію: ";
     in >> teacher.cycleCommission;
-    cout << "Введіть кількість навчальних предметів: ";
-    int n;
-    in >> n;
-    teacher.subjects.resize(n);
-    for (int i = 0; i < n; ++i) {
+
+    cout << "Введіть кількість предметів: ";
+    int count;
+    in >> count;
+    teacher.subjects.resize(count);
+    for (int i = 0; i < count; ++i) {
         cout << "Введіть предмет #" << (i + 1) << ": ";
         in >> teacher.subjects[i];
     }
