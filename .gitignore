@@ -1,1 +1,49 @@
+# Файли збірки
+*.obj
+*.exe
+*.dll
+*.so
+*.dylib
+*.out
+*.o
+
+# Кеші й логи
+*.log
+*.cache
+*.pdb
+*.idb
+*.tlog
+*.lastbuildstate
+*.VC.db
+*.VC.VC.opendb
+
+# Сторонні бібліотеки
+*.lib
+*.a
+
+# Файли IDE та редактора
+.vscode/
+.idea/
+*.sln
+*.vcxproj*
+*.user
+*.ncb
+*.suo
+*.ipch
+*.opensdf
+*.sdf
+*.opendb
+*.VC.db
+
+# Файли Qt
+*.pro.user
+*.moc
+*.qrc
+*.obj
+
+# Директорії збірки
+build/
+dist/
+Debug/
+Release/
 .vs/
