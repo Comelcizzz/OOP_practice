@@ -1,8 +1,7 @@
 ﻿#include "Student.h"
 
-using namespace std;
-
 int main()
 {
-    cout << "Hello World!\n";
+    Student object1, object2, object3; 
+    cin >> object1 >> object2 >> object3;
 }

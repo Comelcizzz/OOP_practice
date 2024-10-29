@@ -21,3 +21,38 @@ Student::Student(const Student& other)
     faculty(other.faculty), course(other.course), group(other.group) {}
 
 Student::~Student() {}
+
+ostream& operator<<(ostream& os, const Student& student) {
+    os << "ID: " << student.studentId << endl;
+    os << "Прізвище: " << student.lastName << endl;
+    os << "Ім'я: " << student.firstName << endl;
+    os << "По батькові: " << student.middleName << endl;
+    os << "Дата народження: " << student.birthDate << endl;
+    os << "Номер телефону: " << student.phoneNumber << endl;
+    os << "Факультет: " << student.faculty << endl;
+    os << "Курс: " << student.course << endl;
+    os << "Група: " << student.group << endl;
+    return os;
+}
+
+istream& operator>>(istream& in, Student& student) { 
+    cout << "Введіть ID студента: ";
+    in >> student.studentId;
+    cout << "Введіть прізвище: ";
+    in >> student.lastName;
+    cout << "Введіть ім'я: ";
+    in >> student.firstName;
+    cout << "Введіть по батькові: ";
+    in >> student.middleName;
+    cout << "Введіть дату народження: ";
+    in >> student.birthDate;
+    cout << "Введіть номер телефону: ";
+    in >> student.phoneNumber;
+    cout << "Введіть факультет: ";
+    in >> student.faculty;
+    cout << "Введіть курс: ";
+    in >> student.course;
+    cout << "Введіть групу: ";
+    in >> student.group;
+    return in;
+}
