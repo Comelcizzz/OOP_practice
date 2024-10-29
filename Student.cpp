@@ -35,3 +35,13 @@ istream& operator>>(istream& in, Student& student) {
     return in;
 }
 
+void Student::showInfo() {
+    cout << "Інформація про студента:" << endl;
+    cout << "------------------------" << endl;
+    cout << static_cast<const Teacher&>(*this);
+    cout << "ID студента: " << studentId << endl;
+    cout << "Факультет: " << faculty << endl;
+    cout << "Курс: " << course << endl;
+    cout << "Група: " << group << endl;
+    cout << "------------------------" << endl;
+}

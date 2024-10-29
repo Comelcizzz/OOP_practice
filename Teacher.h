@@ -26,6 +26,8 @@ public:
         const vector<string>& subjects);
     ~Teacher();
 
+    virtual void showInfo() = 0;
+
     friend ostream& operator<<(ostream& os, const Teacher& teacher);
     friend istream& operator>>(istream& in, Teacher& teacher);
 };
