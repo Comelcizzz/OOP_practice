@@ -32,6 +32,7 @@ public:
 
     friend ostream& operator<<(ostream& os, Student const& student);
     friend istream& operator>>(istream& in, Student& student);
+    friend bool operator==(Student const& obj1, Student const& obj2);
 };
 
 #endif // STUDENT_H

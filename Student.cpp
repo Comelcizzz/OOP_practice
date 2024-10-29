@@ -56,3 +56,15 @@ istream& operator>>(istream& in, Student& student) {
     in >> student.group;
     return in;
 }
+
+bool operator==(const Student& obj1, const Student& obj2) {
+        return obj1.studentId == obj2.studentId &&
+            obj1.lastName == obj2.lastName &&
+            obj1.firstName == obj2.firstName &&
+            obj1.middleName == obj2.middleName &&
+            obj1.birthDate == obj2.birthDate &&
+            obj1.phoneNumber == obj2.phoneNumber &&
+            obj1.faculty == obj2.faculty &&
+            obj1.course == obj2.course &&
+            obj1.group == obj2.group;
+}
