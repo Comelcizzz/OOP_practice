@@ -17,10 +17,10 @@ public:
         const string& phoneNumber, const string& cycleCommission,
         const vector<string>& subjects, const string& faculty,
         int course, const string& group);
-    ~Student() override;
+    ~Student() ;
 
     void showInfo() override;
-    void inputInfo() override; 
+    void inputInfo() override;
 
     friend ostream& operator<<(ostream& os, const Student& student);
     friend istream& operator>>(istream& in, Student& student);

@@ -22,10 +22,10 @@ public:
     Teacher(const string& lastName, const string& firstName, const string& middleName,
         const string& birthDate, const string& phoneNumber, const string& cycleCommission,
         const vector<string>& subjects);
-    virtual ~Teacher() = default;
+    ~Teacher() = default;
 
-    virtual void showInfo() = 0; 
-    virtual void inputInfo() = 0; 
+    virtual void showInfo();
+    virtual void inputInfo();
 
     friend ostream& operator<<(ostream& os, const Teacher& teacher);
     friend istream& operator>>(istream& in, Teacher& teacher);

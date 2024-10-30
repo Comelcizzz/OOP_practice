@@ -10,6 +10,44 @@ Teacher::Teacher(const string& lastName, const string& firstName,
     birthDate(birthDate), phoneNumber(phoneNumber), cycleCommission(cycleCommission),
     subjects(subjects) {}
 
+void Teacher::showInfo() {
+    cout << "Прізвище: " << lastName << "\n"
+        << "Ім'я: " << firstName << "\n"
+        << "Побатькові: " << middleName << "\n"
+        << "Дата народження: " << birthDate << "\n"
+        << "Телефон: " << phoneNumber << "\n"
+        << "Циклова комісія: " << cycleCommission << "\n"
+        << "Предмети: ";
+    for (const auto& subject : subjects) {
+        cout << subject << " ";
+    }
+    cout << endl;
+}
+
+void Teacher::inputInfo() {
+    cout << "Введіть прізвище: ";
+    cin >> lastName;
+    cout << "Введіть ім'я: ";
+    cin >> firstName;
+    cout << "Введіть побатькові: ";
+    cin >> middleName;
+    cout << "Введіть дату народження: ";
+    cin >> birthDate;
+    cout << "Введіть телефон: ";
+    cin >> phoneNumber;
+    cout << "Введіть циклову комісію: ";
+    cin >> cycleCommission;
+
+    cout << "Введіть кількість предметів: ";
+    int count;
+    cin >> count;
+    subjects.resize(count);
+    for (int i = 0; i < count; ++i) {
+        cout << "Введіть предмет #" << (i + 1) << ": ";
+        cin >> subjects[i];
+    }
+}
+
 ostream& operator<<(ostream& os, const Teacher& teacher) {
     os << "Прізвище: " << teacher.lastName << "\n"
         << "Ім'я: " << teacher.firstName << "\n"
