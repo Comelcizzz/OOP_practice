@@ -1,118 +1,100 @@
-﻿#include <iostream>
-#include <vector>
-#include <algorithm>
-#include <Windows.h>
-#include "Teacher.h"
+﻿#include "Teacher.h"
 #include "Student.h"
 #include "Vector.h"
+#include <list>
+#include <map>
+#include <algorithm> 
+#include <Windows.h>
+#include <iostream>
 
 using namespace std;
 
-void showMenu() {
-    cout << "\nМеню:\n";
-    cout << "1. Створити студента\n";
-    cout << "2. Створити вчителя\n";
-    cout << "0. Вихід\n";
-    cout << "Оберіть опцію: ";
-}
-
-vector<int> generateEvenNumbers() {
-    vector<int> evenNumbers;
-    for (int i = 0; i < 10; ++i) {
-        evenNumbers.push_back(2 * (rand() % 50)); 
-    }
-    return evenNumbers;
-}
-
-vector<int> generateOddNumbers() {
-    vector<int> oddNumbers;
-    for (int i = 0; i < 10; ++i) {
-        oddNumbers.push_back(2 * (rand() % 50) + 1); 
-    }
-    return oddNumbers;
-}
-
-void displayVector(const vector<int>& vec, const string& name) {
-    cout << name << ": ";
-    for (const auto& num : vec) {
-        cout << num << " ";
-    }
-    cout << endl;
+int showMenu() {
+    int choice;
+    cout << "Виберіть тип об'єкта для створення:\n";
+    cout << "1. Вчитель\n";
+    cout << "2. Студент\n";
+    cout << "3. Вивести об'єкт з контейнера\n";
+    cout << "4. Вихід\n";
+    cout << "Ваш вибір: ";
+    cin >> choice;
+    return choice;
 }
 
 int main() {
     SetConsoleOutputCP(1251);
 
-    vector<int> oddNumbers = generateOddNumbers();
-    vector<int> evenNumbers = generateEvenNumbers();
+    list<int> list1;
+    for (int i = 1; i <= 20; i += 2) {
+        list1.push_back(i);
+    }
 
-    sort(oddNumbers.begin(), oddNumbers.end());
-    sort(evenNumbers.begin(), evenNumbers.end());
+    list<int> list2;
+    for (int i = 2; i <= 20; i += 2) {
+        list2.push_back(i);
+    }
 
-    vector<int> mergedVector(oddNumbers.size() + evenNumbers.size());
-    merge(oddNumbers.begin(), oddNumbers.end(), evenNumbers.begin(), evenNumbers.end(), mergedVector.begin());
+    list<int> list3;
+    merge(list1.begin(), list1.end(), list2.begin(), list2.end(), back_inserter(list3));
 
-    displayVector(oddNumbers, "Непарні числа");
-    displayVector(evenNumbers, "Парні числа");
-    displayVector(mergedVector, "Об'єднаний вектор");
+    cout << "List 1: ";
+    for (auto n : list1) cout << n << " ";
+    cout << endl;
 
-    Vector<Teacher*> teacherVector;
-    int choice;
+    cout << "List 2: ";
+    for (auto n : list2) cout << n << " ";
+    cout << endl;
 
-    do {
-        showMenu();
-        cin >> choice;
+    cout << "List 3: ";
+    for (auto n : list3) cout << n << " ";
+    cout << endl;
 
+    map<int, Teacher*> teacherMap;
+    map<int, Student*> studentMap;
+    int choice = 0;
+
+    while (choice != 4) {
+        choice = showMenu();
         switch (choice) {
         case 1: {
-            Student* student = new Student();
-            student->inputInfo();
-            teacherVector.push_back(student); 
+            Teacher* teacher = new Teacher();
+            cin >> *teacher; 
+            teacherMap[teacher->getId()] = teacher;
             break;
         }
         case 2: {
-            Teacher* teacher = new Teacher();
-            teacher->inputInfo();
-            teacherVector.push_back(teacher); 
+            Student* student = new Student();
+            cin >> *student; 
+            studentMap[student->getId()] = student;
             break;
         }
-        case 0:
-            cout << "Вихід з програми.\n";
+        case 3: {
+            int id;
+            cout << "Введіть id: ";
+            cin >> id;
+            if (auto* student = dynamic_cast<Student*>(studentMap[id])) {
+                student->showInfo();
+            }
+            else if (auto* teacher = dynamic_cast<Teacher*>(teacherMap[id])) {
+                teacher->showInfo(); 
+            }
+            else {
+                cout << "Об'єкт з таким id не знайдено." << endl;
+            }
+            break;
+        }
+        case 4:
             break;
         default:
-            cout << "Невірний вибір, спробуйте ще раз.\n";
-            break;
-        }
-    } while (choice != 0);
-
-    cout << "\nСписок об'єктів:\n";
-    for (int i = 0; i < teacherVector.getSize(); i++) {
-        if (teacherVector[i]) {
-            teacherVector[i]->showInfo();
-            cout << endl;
+            cout << "Невірний вибір" << endl;
         }
     }
 
-    for (auto it = teacherVector.begin(); it != teacherVector.end();) {
-        if (dynamic_cast<Student*>(*it)) {
-            delete* it; 
-            it = teacherVector.erase(it); 
-        }
-        else {
-            ++it;
-        }
+    for (auto& pair : teacherMap) {
+        delete pair.second;
     }
-
-    cout << "Вектор після видалення студентів:\n";
-    for (const auto& obj : teacherVector) {
-        if (obj) {
-            obj->showInfo(); 
-            cout << endl;
-        }
-    }
-
-    for (int i = 0; i < teacherVector.getSize(); i++) {
-        delete teacherVector[i]; 
+    for (auto& pair : studentMap) {
+        delete pair.second;
     }
 
     return 0;

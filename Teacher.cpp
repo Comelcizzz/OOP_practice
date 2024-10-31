@@ -11,7 +11,9 @@ Teacher::Teacher(const string& lastName, const string& firstName,
     subjects(subjects) {}
 
 void Teacher::showInfo() {
-    cout << "Прізвище: " << lastName << "\n"
+    cout << "Інформація про вчителя:\n";
+    cout << "ID: " << id << "\n"
+        << "Прізвище: " << lastName << "\n"
         << "Ім'я: " << firstName << "\n"
         << "Побатькові: " << middleName << "\n"
         << "Дата народження: " << birthDate << "\n"
@@ -25,6 +27,8 @@ void Teacher::showInfo() {
 }
 
 void Teacher::inputInfo() {
+    cout << "Введіть ID: ";
+    cin >> id;
     cout << "Введіть прізвище: ";
     cin >> lastName;
     cout << "Введіть ім'я: ";
@@ -49,7 +53,8 @@ void Teacher::inputInfo() {
 }
 
 ostream& operator<<(ostream& os, const Teacher& teacher) {
-    os << "Прізвище: " << teacher.lastName << "\n"
+    os  << "Id:" << teacher.id << "\n"
+        << "Прізвище: " << teacher.lastName << "\n"
         << "Ім'я: " << teacher.firstName << "\n"
         << "Побатькові: " << teacher.middleName << "\n"
         << "Дата народження: " << teacher.birthDate << "\n"
@@ -64,6 +69,8 @@ ostream& operator<<(ostream& os, const Teacher& teacher) {
 }
 
 istream& operator>>(istream& in, Teacher& teacher) {
+    cout << "Введіть ID: ";
+    in >> teacher.id;
     cout << "Введіть прізвище: ";
     in >> teacher.lastName;
     cout << "Введіть ім'я: ";

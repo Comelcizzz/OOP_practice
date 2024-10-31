@@ -9,6 +9,7 @@ using namespace std;
 
 class Teacher {
 protected:
+    int id;
     string lastName;
     string firstName;
     string middleName; 
@@ -22,10 +23,13 @@ public:
     Teacher(const string& lastName, const string& firstName, const string& middleName,
         const string& birthDate, const string& phoneNumber, const string& cycleCommission,
         const vector<string>& subjects);
-    ~Teacher() = default;
+
+    int getId() const { return id; }
+
+    virtual ~Teacher() = default;
 
     virtual void showInfo();
-    virtual void inputInfo();
+    void inputInfo();
 
     friend ostream& operator<<(ostream& os, const Teacher& teacher);
     friend istream& operator>>(istream& in, Teacher& teacher);
