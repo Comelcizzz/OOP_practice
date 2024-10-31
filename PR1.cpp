@@ -1,13 +1,6 @@
 ﻿#include "Teacher.h"
 #include "Student.h"
 #include "Vector.h"
-#include <list>
-#include <map>
-#include <algorithm> 
-#include <Windows.h>
-#include <iostream>
-
-using namespace std;
 
 int showMenu() {
     int choice;

@@ -1,38 +1,22 @@
 #ifndef TEACHER_H
 #define TEACHER_H
 
-#include <iostream>
-#include <string>
-#include <vector>
+#include "Person.h"
 
-using namespace std;
-
-class Teacher {
-protected:
-    int id;
-    string lastName;
-    string firstName;
-    string middleName; 
-    string birthDate;
-    string phoneNumber;
+class Teacher : public Person {
+private:
     string cycleCommission;
     vector<string> subjects;
 
 public:
     Teacher();
-    Teacher(const string& lastName, const string& firstName, const string& middleName,
-        const string& birthDate, const string& phoneNumber, const string& cycleCommission,
+    Teacher(const string& lastName, const string& firstName,
+        const string& middleName, const string& birthDate,
+        const string& phoneNumber, const string& cycleCommission,
         const vector<string>& subjects);
 
-    int getId() const { return id; }
-
-    virtual ~Teacher() = default;
-
-    virtual void showInfo();
-    void inputInfo();
-
-    friend ostream& operator<<(ostream& os, const Teacher& teacher);
-    friend istream& operator>>(istream& in, Teacher& teacher);
+    void showInfo() const override;
+    void inputInfo() override;      
 };
 
-#endif // TEACHER_H
+#endif // TEACHER_
