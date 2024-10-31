@@ -1,4 +1,4 @@
-# Файли збірки
+# Builds
 *.obj
 *.exe
 *.dll
@@ -7,7 +7,7 @@
 *.out
 *.o
 
-# Кеші й логи
+# Logs and cache
 *.log
 *.cache
 *.pdb
@@ -17,11 +17,11 @@
 *.VC.db
 *.VC.VC.opendb
 
-# Сторонні бібліотеки
+# Libraries
 *.lib
 *.a
 
-# Файли IDE та редактора
+# IDE and editors
 .vscode/
 .idea/
 *.sln
@@ -33,15 +33,16 @@
 *.opensdf
 *.sdf
 *.opendb
-*.VC.db
 
-# Файли Qt
+# Qt specific files
 *.pro.user
 *.moc
 *.qrc
-*.obj
+moc_*.cpp
+ui_*.h
+qrc_*.cpp
 
-# Директорії збірки
+# Builds
 build/
 dist/
 Debug/
@@ -51,3 +52,22 @@ x64/
 */x64/Debug/
 */Debug/
 
+# Temporary files
+*~
+*.autosave
+*.core
+.DS_Store
+Thumbs.db
+
+# Visual Studio generated files
+*.ib_pdb_index
+*.ilk
+*.idb
+*.vcproj
+*.sdf
+*.opensdf
+*.vcxproj
+
+# Binaries
+*.dll
+*.exe
