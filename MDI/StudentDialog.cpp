@@ -11,7 +11,6 @@ StudentDialog::~StudentDialog() {
 }
 
 void StudentDialog::on_createButton_clicked() {
-    // Отримання даних зі введення
     int id = ui->idLineEdit->text().toInt();
     string lastName = ui->lastNameLineEdit->text().toStdString();
     string firstName = ui->firstNameLineEdit->text().toStdString();
@@ -24,5 +23,5 @@ void StudentDialog::on_createButton_clicked() {
 
     Student *student = new Student(id, lastName, firstName, middleName, birthDate, phoneNumber, faculty, course, group);
     emit studentAdded(student);
-    accept(); // Закриваємо модальне вікно
+    accept();
 }
