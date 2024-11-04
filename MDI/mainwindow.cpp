@@ -1,83 +1,68 @@
 #include "MainWindow.h"
-#include "StudentDialog.h"
-#include "TeacherDialog.h"
-
-#include <QVBoxLayout>
-#include <QPushButton>
-#include <QMdiArea>
-#include <QMdiSubWindow>
-#include <QListWidget>
-#include <QMessageBox>
+#include "ui_MainWindow.h"
 
 MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent) {
-    setupUI();
+    : QMainWindow(parent), ui(new Ui::MainWindow) {
+    ui->setupUi(this);
+    dbManager = SqliteDBManager::getInstance("database.db");
+    dbManager->connectToDataBase();
+
+    studentModel = new QSqlTableModel(this, dbManager->getDB());
+    studentModel->setTable("students");
+    studentModel->select();
+    ui->studentTableView->setModel(studentModel);
+
+    teacherModel = new QSqlTableModel(this, dbManager->getDB());
+    teacherModel->setTable("teachers");
+    teacherModel->select();
+    ui->teacherTableView->setModel(teacherModel);
+
+    studentDialog = new StudentDialog(this);
+    teacherDialog = new TeacherDialog(this);
+
+    connect(studentDialog, &StudentDialog::studentAdded, this, &MainWindow::addStudent);
+    connect(teacherDialog, &TeacherDialog::teacherAdded, this, &MainWindow::addTeacher);
 }
 
 MainWindow::~MainWindow() {
-    qDeleteAll(teachers);
-    qDeleteAll(students);
-}
-
-void MainWindow::setupUI() {
-    QWidget *centralWidget = new QWidget(this);
-    setCentralWidget(centralWidget);
-
-    QVBoxLayout *mainLayout = new QVBoxLayout(centralWidget);
-
-    QPushButton *addStudentButton = new QPushButton("Create Student", this);
-    QPushButton *addTeacherButton = new QPushButton("Create Teacher", this);
-    QPushButton *showStudentListButton = new QPushButton("Show Students List", this);
-    QPushButton *showTeacherListButton = new QPushButton("Show Teachers List", this);
-
-    mainLayout->addWidget(addStudentButton);
-    mainLayout->addWidget(addTeacherButton);
-    mainLayout->addWidget(showStudentListButton);
-    mainLayout->addWidget(showTeacherListButton);
-
-    connect(addStudentButton, &QPushButton::clicked, this, &MainWindow::on_addStudentButton_clicked);
-    connect(addTeacherButton, &QPushButton::clicked, this, &MainWindow::on_addTeacherButton_clicked);
-    connect(showStudentListButton, &QPushButton::clicked, this, &MainWindow::on_showStudentListButton_clicked);
-    connect(showTeacherListButton, &QPushButton::clicked, this, &MainWindow::on_showTeacherListButton_clicked);
-
-    mdiArea = new QMdiArea(this);
-    mainLayout->addWidget(mdiArea);
+    dbManager->closeDataBase();
+    delete ui;
+    delete studentDialog;
+    delete teacherDialog;
 }
 
 void MainWindow::on_addStudentButton_clicked() {
-    StudentDialog *dialog = new StudentDialog(this);
-    connect(dialog, &StudentDialog::studentAdded, this, [=](Student *student) {
-        students.append(student);
-    });
-    dialog->exec();
+    showStudentDialog();
 }
 
 void MainWindow::on_addTeacherButton_clicked() {
-    TeacherDialog *dialog = new TeacherDialog(this);
-    connect(dialog, &TeacherDialog::teacherAdded, this, [=](Teacher *teacher) {
-        teachers.append(teacher);
-    });
-    dialog->exec();
+    showTeacherDialog();
 }
 
-void MainWindow::on_showStudentListButton_clicked() {
-    QListWidget *studentListWidget = new QListWidget;
-    for (const auto &student : students) {
-        studentListWidget->addItem(student->toString().c_str());
-    }
-
-    QMdiSubWindow *subWindow = mdiArea->addSubWindow(studentListWidget);
-    subWindow->setWindowTitle("Students List");
-    subWindow->show();
+void MainWindow::showStudentDialog() {
+    studentDialog->show();
 }
 
-void MainWindow::on_showTeacherListButton_clicked() {
-    QListWidget *teacherListWidget = new QListWidget;
-    for (const auto &teacher : teachers) {
-        teacherListWidget->addItem(teacher->toString().c_str());
-    }
+void MainWindow::showTeacherDialog() {
+    teacherDialog->show();
+}
 
-    QMdiSubWindow *subWindow = mdiArea->addSubWindow(teacherListWidget);
-    subWindow->setWindowTitle("Teachers List");
-    subWindow->show();
+void MainWindow::addStudent(Student* student) {
+    if (dbManager->insertIntoTable(*student)) {
+        refreshStudentTable();
+    }
+}
+
+void MainWindow::addTeacher(Teacher* teacher) {
+    if (dbManager->insertIntoTable(*teacher)) {
+        refreshTeacherTable();
+    }
+}
+
+void MainWindow::refreshStudentTable() {
+    studentModel->select();
+}
+
+void MainWindow::refreshTeacherTable() {
+    teacherModel->select();
 }

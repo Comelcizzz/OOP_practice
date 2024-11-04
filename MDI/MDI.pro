@@ -1,4 +1,5 @@
 QT       += core gui
+QT       += core gui sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -10,6 +11,7 @@ CONFIG += c++17
 
 SOURCES += \
     Person.cpp \
+    SqliteDBManager.cpp \
     Student.cpp \
     StudentDialog.cpp \
     Teacher.cpp \
@@ -19,6 +21,7 @@ SOURCES += \
 
 HEADERS += \
     Person.h \
+    SqliteDBManager.h \
     Student.h \
     StudentDialog.h \
     Teacher.h \

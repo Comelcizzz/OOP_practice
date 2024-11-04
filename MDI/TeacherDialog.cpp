@@ -11,7 +11,6 @@ TeacherDialog::~TeacherDialog() {
 }
 
 void TeacherDialog::on_createButton_clicked() {
-    int id = ui->idLineEdit->text().toInt();
     string lastName = ui->lastNameLineEdit->text().toStdString();
     string firstName = ui->firstNameLineEdit->text().toStdString();
     string middleName = ui->middleNameLineEdit->text().toStdString();
@@ -19,7 +18,7 @@ void TeacherDialog::on_createButton_clicked() {
     string phoneNumber = ui->phoneNumberLineEdit->text().toStdString();
     string cycleCommission = ui->cycleCommissionLineEdit->text().toStdString();
 
-    Teacher *teacher = new Teacher(id, lastName, firstName, middleName, birthDate, phoneNumber, cycleCommission);
+    Teacher *teacher = new Teacher(lastName, firstName, middleName, birthDate, phoneNumber, cycleCommission);
     emit teacherAdded(teacher);
     accept();
 }

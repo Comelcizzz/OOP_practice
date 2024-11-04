@@ -24,11 +24,11 @@
      </rect>
     </property>
    </widget>
-   <widget class="QPushButton" name="createTeacherButton">
+   <widget class="QPushButton" name="addTeacherButton">
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>30</y>
+      <y>350</y>
       <width>801</width>
       <height>24</height>
      </rect>
@@ -41,7 +41,7 @@
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>60</y>
+      <y>380</y>
       <width>801</width>
       <height>24</height>
      </rect>
@@ -50,11 +50,11 @@
      <string>Show Teacher</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="createStudentButton">
+   <widget class="QPushButton" name="addStudentButton">
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>0</y>
+      <y>320</y>
       <width>801</width>
       <height>24</height>
      </rect>
@@ -67,7 +67,7 @@
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>90</y>
+      <y>410</y>
       <width>801</width>
       <height>24</height>
      </rect>
@@ -76,26 +76,23 @@
      <string>Show Student</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="exitButton">
+   <widget class="QTableView" name="studentTableView">
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>120</y>
-      <width>801</width>
-      <height>24</height>
+      <y>0</y>
+      <width>401</width>
+      <height>241</height>
      </rect>
     </property>
-    <property name="text">
-     <string>Exit</string>
-    </property>
    </widget>
-   <widget class="QMdiArea" name="mdiArea">
+   <widget class="QTableView" name="teacherTableView">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>160</y>
-      <width>200</width>
-      <height>160</height>
+      <x>400</x>
+      <y>0</y>
+      <width>401</width>
+      <height>241</height>
      </rect>
     </property>
    </widget>

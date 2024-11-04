@@ -2,7 +2,7 @@
 
 Student::Student() : Person(), course(0) {}
 
-Student::Student(int id, const string& lastName, const string& firstName,
+Student::Student(const string& lastName, const string& firstName,
                  const string& middleName, const string& birthDate,
                  const string& phoneNumber, const string& faculty, int course, const string& group)
     : Person(id, lastName, firstName, middleName, birthDate, phoneNumber),

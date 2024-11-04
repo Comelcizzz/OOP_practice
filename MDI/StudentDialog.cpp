@@ -11,7 +11,6 @@ StudentDialog::~StudentDialog() {
 }
 
 void StudentDialog::on_createButton_clicked() {
-    int id = ui->idLineEdit->text().toInt();
     string lastName = ui->lastNameLineEdit->text().toStdString();
     string firstName = ui->firstNameLineEdit->text().toStdString();
     string middleName = ui->middleNameLineEdit->text().toStdString();
@@ -21,7 +20,7 @@ void StudentDialog::on_createButton_clicked() {
     int course = ui->courseLineEdit->text().toInt();
     string group = ui->groupLineEdit->text().toStdString();
 
-    Student *student = new Student(id, lastName, firstName, middleName, birthDate, phoneNumber, faculty, course, group);
+    Student *student = new Student(lastName, firstName, middleName, birthDate, phoneNumber, faculty, course, group);
     emit studentAdded(student);
     accept();
 }

@@ -13,19 +13,6 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QLineEdit" name="idLineEdit">
-   <property name="geometry">
-    <rect>
-     <x>210</x>
-     <y>120</y>
-     <width>113</width>
-     <height>24</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>ID</string>
-   </property>
-  </widget>
   <widget class="QLineEdit" name="lastNameLineEdit">
    <property name="geometry">
     <rect>
@@ -114,7 +101,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>PushButton</string>
+    <string>Create</string>
    </property>
   </widget>
  </widget>

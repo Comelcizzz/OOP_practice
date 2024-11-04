@@ -2,7 +2,7 @@
 
 Teacher::Teacher() {}
 
-Teacher::Teacher(const int& id, const string& lastName, const string& firstName,
+Teacher::Teacher(const string& lastName, const string& firstName,
                  const string& middleName, const string& birthDate,
                  const string& phoneNumber, const string& cycleCommission)
     : Person(0, lastName, firstName, middleName, birthDate, phoneNumber),
